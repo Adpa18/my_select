@@ -5,12 +5,12 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:00:13 2015 adrien wery
-** Last update Fri Jan  9 14:00:48 2015 adrien wery
+** Last update Fri Jan  9 17:35:44 2015 adrien wery
 */
 
 #include "my_select.h"
 
-int     display_list(t_l *list, int pos, int ws_row, int ws_col)
+int     display_list(t_l *list, int pos, int wrow, int wcol)
 {
   int   i;
   int   x;
@@ -21,11 +21,11 @@ int     display_list(t_l *list, int pos, int ws_row, int ws_col)
   x = 0;
   y = 0;
   max_s = 0;
-  while (list[i].str)
+  while (list[i].str && display_small(x + max_s, wcol) != 1 && quit(list) == 1)
     {
       if (my_str(list[i].str, 0) > max_s)
         max_s = my_str(list[i].str, 0);
-      if (y == ws_row)
+      if (y == wrow)
         {
           x = x + max_s + 1;
           y = 0;
@@ -51,6 +51,21 @@ int     display_list_2(t_l *list, int i, int pos)
         underline(list[i].str);
       else if (list[i].deleted == 0)
         write(0, list[i].str, my_str(list[i].str, 0));
+      return (1);
+    }
+  else
+    return (0);
+}
+
+int	display_small(int x, int ws_col)
+{
+  if (x > ws_col)
+    {
+      tputs(tgetstr("cl", NULL), 0, my_putchr);
+      if (ws_col < 21)
+	write(0, "O", 1);
+      else
+	write(0, "Window is too small !!!", 21);
       return (1);
     }
   else

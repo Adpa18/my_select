@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Tue Jan  6 21:12:47 2015 adrien wery
-** Last update Fri Jan  9 15:04:19 2015 adrien wery
+** Last update Fri Jan  9 17:29:18 2015 adrien wery
 */
 
 #ifndef MY_SELECT_H_
@@ -29,6 +29,7 @@
 # define SPACE_KEY 32
 # define DEL_KEY 127
 # define ESCAPE_KEY 27
+# define ENTREY 10
 
 typedef struct	s_list
 {
@@ -67,5 +68,8 @@ int		check_key(t_l *list, int key, int pos);
 t_l		*set_list(char **s);
 int		display_list(t_l *list, int pos, int ws_row, int ws_col);
 int		display_list_2(t_l *list, int i, int pos);
+int		display_small(int x, int ws_col);
+int		entrey(t_l *list);
+int		quit(t_l *list);
 
 #endif /* !MY_SELECT_H_ */
