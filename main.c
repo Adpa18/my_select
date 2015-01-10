@@ -5,29 +5,43 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:24:08 2015 adrien wery
-** Last update Fri Jan  9 17:29:50 2015 adrien wery
+** Last update Sat Jan 10 14:09:36 2015 adrien wery
 */
 
 #include "my_select.h"
 
 t_l	*lis;
+char	s[256];
 
 void	sigw(int sig)
 {
   get_key(lis, 0, 0);
 }
 
-int     get_key(t_l *list, int key, int pos)
+int			get_key(t_l *list, int key, int pos)
 {
-  struct winsize w;
+  struct winsize	w;
+  t_sel			se;
 
+  if (key >= 33 && key < 126)
+    s[my_str(s, 0)] = key;
+  else if (key == DEL_KEY && my_str(s, 0) > 0 && my_str(s, 0) < 256)
+    {
+      s[my_str(s, 0) - 1] = '\0';
+      restore_list(list);
+    }
+  tputs(tgetstr("cl", NULL), 0, my_putchr);
+  tputs(tgoto(tgetstr("cm", NULL), 0, 100), 0, my_putchr);
+  my_str(s, 1);
   if (key == ENTREY)
     entrey(list);
-  tputs(tgetstr("cl", NULL), 0, my_putchr);
   pos = get_pos(list, pos);
   ioctl(0, TIOCGWINSZ, &w);
   pos = check_key(list, key, pos);
-  display_list(list, pos, w.ws_row, w.ws_col);
+  se.s = s;
+  se.r = w.ws_row;
+  se.c = w.ws_col;
+  display_list(list, pos, se);
   return (pos);
 }
 
@@ -58,6 +72,7 @@ int	entrey(t_l *list)
 
   i = 0;
   tputs(tgetstr("cl", NULL), 0, my_putchr);
+  unset_terms();
   while (list[i].str)
     {
       if (list[i].selected == 1)
@@ -67,7 +82,7 @@ int	entrey(t_l *list)
 	}
       i += 1;
     }
-  unset_terms();
+  write(0, "\n", 1);
   exit(EXIT_SUCCESS);
 }
 
@@ -81,8 +96,10 @@ int	main(int argc, char **argv, char **envp)
   set_terms(envp);
   lis = set_list(&argv[1]);
   signal(SIGWINCH, sigw);
+  signal(SIGINT, sigw2);
   key = 0;
   pos = 0;
+  my_memset(s, 0, 256);
   while (key != ESCAPE_KEY)
     {
       pos = get_key(lis, key, pos);

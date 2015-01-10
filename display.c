@@ -5,12 +5,12 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:00:13 2015 adrien wery
-** Last update Fri Jan  9 17:35:44 2015 adrien wery
+** Last update Sat Jan 10 13:58:32 2015 adrien wery
 */
 
 #include "my_select.h"
 
-int     display_list(t_l *list, int pos, int wrow, int wcol)
+int     display_list(t_l *list, int pos, t_sel se)
 {
   int   i;
   int   x;
@@ -21,11 +21,11 @@ int     display_list(t_l *list, int pos, int wrow, int wcol)
   x = 0;
   y = 0;
   max_s = 0;
-  while (list[i].str && display_small(x + max_s, wcol) != 1 && quit(list) == 1)
+  while (list[i].str && display_small(x + max_s, se.c) != 1 && quit(list) == 1)
     {
       if (my_str(list[i].str, 0) > max_s)
         max_s = my_str(list[i].str, 0);
-      if (y == wrow)
+      if (y == se.r - 2)
         {
           x = x + max_s + 1;
           y = 0;
@@ -33,15 +33,17 @@ int     display_list(t_l *list, int pos, int wrow, int wcol)
         }
       tputs(tgoto(tgetstr("cm", NULL), x, y), 0, my_putchr);
       if (list[i].deleted != 1)
-        y += display_list_2(list, i, pos);
+        y += display_list_2(list, i, pos, se.s);
       i += 1;
     }
   return (0);
 }
 
-int     display_list_2(t_l *list, int i, int pos)
+int     display_list_2(t_l *list, int i, int pos, char *s)
 {
-  if (list[i].deleted != 1)
+  if (strncmp(s, list[i].str, my_str(s, 0)) != 0)
+    list[i].finded = 1;
+  if (list[i].deleted != 1 && list[i].finded != 1)
     {
       if (list[i].selected == 1 && i == pos)
         underline(list[i].str);
@@ -50,7 +52,7 @@ int     display_list_2(t_l *list, int i, int pos)
       else if (i == pos)
         underline(list[i].str);
       else if (list[i].deleted == 0)
-        write(0, list[i].str, my_str(list[i].str, 0));
+        write(1, list[i].str, my_str(list[i].str, 0));
       return (1);
     }
   else

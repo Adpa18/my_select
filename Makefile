@@ -5,7 +5,7 @@
 ## Login   <wery_a@epitech.net>
 ## 
 ## Started on  Fri Jan  2 20:37:11 2015 adrien wery
-## Last update Fri Jan  9 17:36:54 2015 adrien wery
+## Last update Sat Jan 10 14:14:13 2015 adrien wery
 ##
 
 SRC	= main.c \

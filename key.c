@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Thu Jan  8 15:07:09 2015 adrien wery
-** Last update Fri Jan  9 14:56:59 2015 adrien wery
+** Last update Sat Jan 10 13:46:34 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -20,9 +20,9 @@ int	check_key(t_l *list, int key, int pos)
     list[pos++].selected = 1;
   else if (key == SPACE_KEY && list[pos].selected != 0)
     list[pos].selected = 0;
-  if (key == DEL_KEY)
+  if (key == SUPP_KEY)
     list[pos++].deleted = 1;
-  if (key == 65)
+  if (key == RIGHT_KEY)
     restore_list(list);
   return (pos);
 }
@@ -39,7 +39,8 @@ int     read_key()
 {
   char  buff[5];
 
-  if (read(0, buff, 3) == 0)
+  my_memset(buff, 0, 5);
+  if (read(0, buff, 3) == -1)
     {
       unset_terms();
       my_error("Read Failed");

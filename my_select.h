@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Tue Jan  6 21:12:47 2015 adrien wery
-** Last update Fri Jan  9 17:29:18 2015 adrien wery
+** Last update Sat Jan 10 13:58:06 2015 adrien wery
 */
 
 #ifndef MY_SELECT_H_
@@ -28,21 +28,23 @@
 # define LEFT_KEY 168
 # define SPACE_KEY 32
 # define DEL_KEY 127
+# define SUPP_KEY 126
 # define ESCAPE_KEY 27
-# define ENTREY 10
+# define ENTREY 13
 
 typedef struct	s_list
 {
   char		*str;
   int		selected;
   int		deleted;
+  int		finded;
 }		t_l;
 
-typedef struct	s_select
+typedef struct	s_sel
 {
-  struct termios old;
-  int		fd;
-  char		**av;
+  char		*s;
+  int		r;
+  int		c;
 }		t_sel;
 
 void            my_putchar(char c);
@@ -61,13 +63,14 @@ void		r_video(char *s);
 int		read_key();
 int		get_key(t_l *list, int key, int pos);
 void		sigw(int sig);
+void		sigw2(int sig);
 int		get_pos(t_l *list, int pos);
 int		move_pos(t_l *list, int pos, int step, int neg);
 void		restore_list(t_l *list);
 int		check_key(t_l *list, int key, int pos);
 t_l		*set_list(char **s);
-int		display_list(t_l *list, int pos, int ws_row, int ws_col);
-int		display_list_2(t_l *list, int i, int pos);
+int		display_list(t_l *list, int pos, t_sel se);
+int		display_list_2(t_l *list, int i, int pos, char *s);
 int		display_small(int x, int ws_col);
 int		entrey(t_l *list);
 int		quit(t_l *list);

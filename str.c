@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Sun Jan  4 16:46:10 2015 adrien wery
-** Last update Fri Jan  9 00:09:54 2015 adrien wery
+** Last update Fri Jan  9 21:01:50 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -17,7 +17,7 @@ void	my_putchar(char c)
 
 int     my_putchr(int c)
 {
-  write(0, &c, 1);
+  write(1, &c, 1);
   return (0);
 }
 

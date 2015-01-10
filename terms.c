@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:23:42 2015 adrien wery
-** Last update Thu Jan  8 21:46:56 2015 adrien wery
+** Last update Fri Jan  9 21:02:31 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -63,13 +63,13 @@ void                    unset_terms()
 void                    underline(char *s)
 {
   tputs(tgetstr("us", NULL), 0, my_putchr);
-  write(0, s, my_str(s, 0));
+  write(1, s, my_str(s, 0));
   tputs(tgetstr("ue", NULL), 0, my_putchr);
 }
 
 void                    r_video(char *s)
 {
   tputs(tgetstr("mr", NULL), 0, my_putchr);
-  write(0, s, my_str(s, 0));
+  write(1, s, my_str(s, 0));
   tputs(tgetstr("me", NULL), 0, my_putchr);
 }
