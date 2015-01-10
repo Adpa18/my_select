@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:24:08 2015 adrien wery
-** Last update Fri Jan  9 22:18:40 2015 adrien wery
+** Last update Sat Jan 10 14:09:36 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -21,10 +21,11 @@ void	sigw(int sig)
 int			get_key(t_l *list, int key, int pos)
 {
   struct winsize	w;
+  t_sel			se;
 
-  if (key >= 33 && key <= 126)
+  if (key >= 33 && key < 126)
     s[my_str(s, 0)] = key;
-  else if (key == LEFT_KEY && my_str(s, 0) > 0 && my_str(s, 0) < 256)
+  else if (key == DEL_KEY && my_str(s, 0) > 0 && my_str(s, 0) < 256)
     {
       s[my_str(s, 0) - 1] = '\0';
       restore_list(list);
@@ -37,7 +38,10 @@ int			get_key(t_l *list, int key, int pos)
   pos = get_pos(list, pos);
   ioctl(0, TIOCGWINSZ, &w);
   pos = check_key(list, key, pos);
-  display_list(list, pos, w.ws_row, w.ws_col, s);
+  se.s = s;
+  se.r = w.ws_row;
+  se.c = w.ws_col;
+  display_list(list, pos, se);
   return (pos);
 }
 
