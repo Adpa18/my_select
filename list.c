@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:04:00 2015 adrien wery
-** Last update Fri Jan  9 22:15:39 2015 adrien wery
+** Last update Sat Jan 10 14:40:25 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -51,6 +51,7 @@ void    restore_list(t_l *list)
 
 void	sigw2(int sig)
 {
+  my_putchr(sig);
   tputs(tgetstr("cl", NULL), 0, my_putchr);
   unset_terms();
   exit(EXIT_SUCCESS);

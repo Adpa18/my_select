@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:00:13 2015 adrien wery
-** Last update Sat Jan 10 13:58:32 2015 adrien wery
+** Last update Sat Jan 10 14:50:55 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -32,7 +32,7 @@ int     display_list(t_l *list, int pos, t_sel se)
           max_s = 0;
         }
       tputs(tgoto(tgetstr("cm", NULL), x, y), 0, my_putchr);
-      if (list[i].deleted != 1)
+      if (list[i].deleted != 1 && list[i].finded != 1)
         y += display_list_2(list, i, pos, se.s);
       i += 1;
     }

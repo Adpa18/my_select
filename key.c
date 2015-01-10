@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Thu Jan  8 15:07:09 2015 adrien wery
-** Last update Sat Jan 10 13:46:34 2015 adrien wery
+** Last update Sat Jan 10 14:51:43 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -30,7 +30,7 @@ int	check_key(t_l *list, int key, int pos)
 int	move_pos(t_l *list, int pos, int step, int neg)
 {
   pos += neg * step;
-  while (list[pos].deleted == 1)
+  while (list[pos].deleted == 1 || list[pos].finded == 1)
     pos += neg * step;
   return (pos);
 }

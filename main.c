@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:24:08 2015 adrien wery
-** Last update Sat Jan 10 14:09:36 2015 adrien wery
+** Last update Sat Jan 10 14:46:24 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -15,6 +15,7 @@ char	s[256];
 
 void	sigw(int sig)
 {
+  my_putchr(sig);
   get_key(lis, 0, 0);
 }
 
@@ -32,7 +33,9 @@ int			get_key(t_l *list, int key, int pos)
     }
   tputs(tgetstr("cl", NULL), 0, my_putchr);
   tputs(tgoto(tgetstr("cm", NULL), 0, 100), 0, my_putchr);
+  my_str("\e[01;36m", 1);
   my_str(s, 1);
+  my_str("\e[00m", 1);
   if (key == ENTREY)
     entrey(list);
   pos = get_pos(list, pos);
