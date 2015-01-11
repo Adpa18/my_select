@@ -1,11 +1,11 @@
 /*
-** key.c for key in /home/wery_a/rendu/my_select/Test/v9
+** key.c for key in /home/wery_a/rendu/my_select/Test/v3
 ** 
 ** Made by adrien wery
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Thu Jan  8 15:07:09 2015 adrien wery
-** Last update Sun Jan 11 22:41:41 2015 adrien wery
+** Last update Sun Jan 11 19:35:07 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -23,7 +23,7 @@ int	check_key(t_l *list, int key, int pos)
   if (key == SUPP_KEY)
     list[pos++].deleted = 1;
   if (key == RIGHT_KEY)
-    restore_list(list, 1);
+    restore_list(list);
   if (key == LEFT_KEY)
     inverse_selected(list);
   if (key == BEGIN_KEY)

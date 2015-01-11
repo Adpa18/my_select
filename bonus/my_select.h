@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Tue Jan  6 21:12:47 2015 adrien wery
-** Last update Sun Jan 11 21:10:28 2015 adrien wery
+** Last update Sun Jan 11 19:26:20 2015 adrien wery
 */
 
 #ifndef MY_SELECT_H_
@@ -81,7 +81,7 @@ void		display_border(int col, int row);
 int		display_col(int x, int row);
 int		quit(t_l *list);
 void		entrey(t_l *list);
-void		restore_list(t_l *list, int mode);
+void		restore_list(t_l *list);
 void		inverse_selected(t_l *list);
 void		selected_all(t_l *list);
 void		deselected_all(t_l *list);

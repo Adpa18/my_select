@@ -1,11 +1,11 @@
 /*
-** list2.c for list2 in /home/wery_a/rendu/my_select/Test/v9
+** list2.c for list2 in /home/wery_a/rendu/my_select/Test/v6
 ** 
 ** Made by adrien wery
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Sun Jan 11 13:55:11 2015 adrien wery
-** Last update Sun Jan 11 22:41:49 2015 adrien wery
+** Last update Sun Jan 11 19:33:38 2015 adrien wery
 */
 
 #include "my_select.h"

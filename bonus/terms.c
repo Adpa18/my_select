@@ -1,11 +1,11 @@
 /*
-** terms.c for terms in /home/wery_a/rendu/my_select/Test/v9
+** terms.c for terms in /home/wery_a/rendu/my_select/Test/v2
 ** 
 ** Made by adrien wery
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:23:42 2015 adrien wery
-** Last update Sun Jan 11 22:42:43 2015 adrien wery
+** Last update Sun Jan 11 19:45:15 2015 adrien wery
 */
 
 #include "my_select.h"

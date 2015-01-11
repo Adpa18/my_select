@@ -1,11 +1,11 @@
 /*
-** str.c for str in /home/wery_a/rendu/Rush_marvin/Test/v9
+** str.c for str in /home/wery_a/rendu/Rush_marvin/Test/v3
 ** 
 ** Made by adrien wery
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Sun Jan  4 16:46:10 2015 adrien wery
-** Last update Sun Jan 11 22:42:37 2015 adrien wery
+** Last update Sun Jan 11 19:14:59 2015 adrien wery
 */
 
 #include "my_select.h"

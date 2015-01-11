@@ -1,11 +1,11 @@
 /*
-** main.c for main.c in /home/wery_a/rendu/my_select/Test/v9
+** main.c for main.c in /home/wery_a/rendu/my_select/Test/v2
 ** 
 ** Made by adrien wery
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:24:08 2015 adrien wery
-** Last update Sun Jan 11 22:42:13 2015 adrien wery
+** Last update Sun Jan 11 19:38:46 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -61,7 +61,7 @@ int			get_key(t_l *list, int key, int pos)
   else if (key == DEL_KEY && my_strlen(s) > 0)
     {
       s[my_strlen(s) - 1] = '\0';
-      restore_list(list, 0);
+      restore_list(list);
     }
   tputs(tgetstr("cl", NULL), 0, my_putchr);
   if (key == ENTREY)

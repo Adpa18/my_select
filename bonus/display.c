@@ -1,11 +1,11 @@
 /*
-** display.c for display in /home/wery_a/rendu/my_select/Test/v9
+** display.c for display in /home/wery_a/rendu/my_select/Test/v4
 ** 
 ** Made by adrien wery
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:00:13 2015 adrien wery
-** Last update Sun Jan 11 22:41:17 2015 adrien wery
+** Last update Sun Jan 11 20:06:19 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -39,35 +39,10 @@ void     display_list(t_l *list, int pos, t_sel se)
     }
 }
 
-int     match(char *s1, char *s2)
-{
-  int   i;
-  int   n;
-
-  i = 0;
-  if (s1 == NULL || s2 == NULL)
-    return (-1);
-  while (s2[i])
-    {
-      n = 0;
-      if (s1[n] != s2[i])
-        i += 1;
-      else
-        while (s1[n] == s2[i])
-          {
-            n += 1;
-            i += 1;
-          }
-      if (s1[n] == '\0')
-        return (0);
-    }
-  return (2);
-}
-
 int     display_list_2(t_l *list, int i, int pos, char *s)
 {
   color_print("\e[00;37m");
-  if (match(s, list[i].str) != 0)
+  if (strncmp(s, list[i].str, my_strlen(s)) != 0)
     list[i].finded = 1;
   if (list[i].deleted != 1 && list[i].finded != 1)
     {
@@ -88,7 +63,7 @@ int     display_list_2(t_l *list, int i, int pos, char *s)
 
 int	display_small(int x, t_sel se)
 {
-  if ((x > se.c || se.c < 10 || se.r < 4) && se.c < 200)
+  if ((x > se.c || se.c < 10 || se.r < 5) && se.c < 200)
     {
       tputs(tgetstr("cl", NULL), 0, my_putchr);
       if (se.c < 21)
@@ -123,7 +98,7 @@ void	display_numb(t_l *list, int row, int col)
   tputs(tgoto(tgetstr("cm", NULL), col - 10, row), 0, my_putchr);
   color_print("\e[01;31m");
   my_put_nbr(selected);
-  my_str("/", 1, "\e[01;35m", "\e[00;37m");
+  my_str(" / ", 1, "\e[01;35m", "\e[00;37m");
   color_print("\e[01;31m");
   my_put_nbr(total);
   color_print("\e[00m");
