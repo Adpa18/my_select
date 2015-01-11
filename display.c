@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:00:13 2015 adrien wery
-** Last update Sun Jan 11 13:25:10 2015 adrien wery
+** Last update Sun Jan 11 15:30:56 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -71,4 +71,29 @@ int	display_small(int x, int ws_col)
     }
   else
     return (0);
+}
+
+void                    display_numb(t_l *list)
+{
+  int                   i;
+  int                   selected;
+  int                   total;
+
+  i = 0;
+  selected = 0;
+  total = 0;
+  while (list[i].str)
+    {
+      if (list[i].deleted == 0)
+        {
+          if (list[i].selected == 1)
+            selected += 1;
+          total += 1;
+        }
+      i += 1;
+    }
+  tputs(tgoto(tgetstr("cm", NULL), 100, 100), 0, my_putchr);
+  my_put_nbr(selected);
+  my_str(" / ", 1);
+  my_put_nbr(total);
 }

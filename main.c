@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:24:08 2015 adrien wery
-** Last update Sun Jan 11 15:03:20 2015 adrien wery
+** Last update Sun Jan 11 15:31:55 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -46,13 +46,13 @@ int			get_key(t_l *list, int key, int pos)
   my_str("\e[00m", 1);
   if (key == ENTREY)
     entrey(list);
-  pos = get_pos(list, pos);
   ioctl(0, TIOCGWINSZ, &w);
-  pos = check_key(list, key, pos);
+  pos = check_key(list, key, get_pos(list, pos));
   se.s = s;
   se.r = w.ws_row;
   se.c = w.ws_col;
   display_list(list, pos, se);
+  display_numb(list);
   return (pos);
 }
 

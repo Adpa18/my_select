@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Tue Jan  6 21:12:47 2015 adrien wery
-** Last update Sun Jan 11 15:01:06 2015 adrien wery
+** Last update Sun Jan 11 15:35:05 2015 adrien wery
 */
 
 #ifndef MY_SELECT_H_
@@ -56,6 +56,7 @@ char		*my_memset(char *s, char c, int size);
 void		*my_malloc(int size);
 int		my_strncmp(char *s1, char *s2, int nb);
 int		my_str(char *s, int mode);
+void		my_put_nbr(int nb);
 int             main(int argc, char **argv, char **envp);
 void		sigw(int sig);
 void		sigw2(int sig);
@@ -73,6 +74,7 @@ t_l		*set_list(char **s);
 void		display_list(t_l *list, int pos, t_sel se);
 int		display_list_2(t_l *list, int i, int pos, char *s);
 int		display_small(int x, int ws_col);
+void		display_numb(t_l *list);
 int		quit(t_l *list);
 void		entrey(t_l *list);
 void		restore_list(t_l *list);
