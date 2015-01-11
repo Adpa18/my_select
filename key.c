@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Thu Jan  8 15:07:09 2015 adrien wery
-** Last update Sun Jan 11 15:02:39 2015 adrien wery
+** Last update Sun Jan 11 17:19:40 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -66,4 +66,20 @@ int	get_pos(t_l *list, int pos)
   else
     pos = pos % i;
   return (pos);
+}
+
+int    display_col(int x, int row)
+{
+  int   y;
+
+  y = 1;
+  my_str("\e[01;33m", 1);
+  while (y < row - 2)
+    {
+      tputs(tgoto(tgetstr("cm", NULL), x, y), 0, my_putchr);
+      write(1, "||", 2);
+      y += 1;
+    }
+  my_str("\e[00m", 1);
+  return (x + 3);
 }

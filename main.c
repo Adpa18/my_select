@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:24:08 2015 adrien wery
-** Last update Sun Jan 11 16:09:00 2015 adrien wery
+** Last update Sun Jan 11 17:04:37 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -40,10 +40,6 @@ int			get_key(t_l *list, int key, int pos)
       restore_list(list);
     }
   tputs(tgetstr("cl", NULL), 0, my_putchr);
-  tputs(tgoto(tgetstr("cm", NULL), 0, w.ws_row), 0, my_putchr);
-  my_str("\e[01;36m", 1);
-  my_str(s, 1);
-  my_str("\e[00m", 1);
   if (key == ENTREY)
     entrey(list);
   ioctl(0, TIOCGWINSZ, &w);
@@ -51,8 +47,12 @@ int			get_key(t_l *list, int key, int pos)
   se.s = s;
   se.r = w.ws_row;
   se.c = w.ws_col;
-  display_list(list, pos, se);
+  tputs(tgoto(tgetstr("cm", NULL), 0, w.ws_row), 0, my_putchr);
+  my_str("\e[01;36m", 1);
+  my_str(s, 1);
+  my_str("\e[00m", 1);
   display_numb(list, w.ws_row, w.ws_col);
+  display_list(list, pos, se);
   return (pos);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Tue Jan  6 21:12:47 2015 adrien wery
-** Last update Sun Jan 11 16:08:09 2015 adrien wery
+** Last update Sun Jan 11 17:19:59 2015 adrien wery
 */
 
 #ifndef MY_SELECT_H_
@@ -73,8 +73,10 @@ int		move_pos(t_l *list, int pos, int step, int neg);
 t_l		*set_list(char **s);
 void		display_list(t_l *list, int pos, t_sel se);
 int		display_list_2(t_l *list, int i, int pos, char *s);
-int		display_small(int x, int ws_col);
+int		display_small(int x, t_sel se);
 void		display_numb(t_l *list, int row, int col);
+void		display_border(int col, int row);
+int		display_col(int x, int row);
 int		quit(t_l *list);
 void		entrey(t_l *list);
 void		restore_list(t_l *list);

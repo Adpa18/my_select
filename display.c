@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:00:13 2015 adrien wery
-** Last update Sun Jan 11 16:10:36 2015 adrien wery
+** Last update Sun Jan 11 17:21:26 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -18,17 +18,18 @@ void     display_list(t_l *list, int pos, t_sel se)
   int   max_s;
 
   i = 0;
-  x = 0;
-  y = 0;
+  x = 3;
+  y = 1;
   max_s = 0;
-  while (list[i].str && display_small(x + max_s, se.c) != 1 && quit(list) == 1)
+  display_border(se.c, se.r);
+  while (list[i].str && display_small(x + max_s, se) != 1 && quit(list) == 1)
     {
       if (my_str(list[i].str, 0) > max_s)
         max_s = my_str(list[i].str, 0);
       if (y == se.r - 2)
         {
-          x = x + max_s + 1;
-          y = 0;
+          x = display_col(x + max_s + 1, se.r);
+          y = 1;
           max_s = 0;
         }
       tputs(tgoto(tgetstr("cm", NULL), x, y), 0, my_putchr);
@@ -58,12 +59,12 @@ int     display_list_2(t_l *list, int i, int pos, char *s)
     return (0);
 }
 
-int	display_small(int x, int ws_col)
+int	display_small(int x, t_sel se)
 {
-  if (x > ws_col)
+  if (x > se.c || se.c < 10 || se.r < 5)
     {
       tputs(tgetstr("cl", NULL), 0, my_putchr);
-      if (ws_col < 21)
+      if (se.c < 21)
 	write(0, "O", 1);
       else
 	write(0, "Window is too small !!!", 21);
@@ -73,11 +74,11 @@ int	display_small(int x, int ws_col)
     return (0);
 }
 
-void                    display_numb(t_l *list, int row, int col)
+void	display_numb(t_l *list, int row, int col)
 {
-  int                   i;
-  int                   selected;
-  int                   total;
+  int	i;
+  int	selected;
+  int	total;
 
   i = 0;
   selected = 0;
@@ -92,8 +93,37 @@ void                    display_numb(t_l *list, int row, int col)
         }
       i += 1;
     }
-  tputs(tgoto(tgetstr("cm", NULL), col - 9, row), 0, my_putchr);
+  tputs(tgoto(tgetstr("cm", NULL), col - 10, row), 0, my_putchr);
+  my_str("\e[01;31m", 1);
   my_put_nbr(selected);
   my_str(" / ", 1);
   my_put_nbr(total);
+  my_str("\e[00m", 1);
+}
+
+void	display_border(int col, int row)
+{
+  int	x;
+
+  x = 0;
+  my_str("\e[01;33m", 1);
+  while (x < row - 1)
+    {
+      tputs(tgoto(tgetstr("cm", NULL), col - 2, x), 0, my_putchr);
+      write(1, "||", 2);
+      tputs(tgoto(tgetstr("cm", NULL), 0, x), 0, my_putchr);
+      write(1, "||", 2);
+      x += 1;
+    }
+  x = 0;
+  my_str("\e[01;34m", 1);
+  while (x < col)
+    {
+      tputs(tgoto(tgetstr("cm", NULL), x, row - 2), 0, my_putchr);
+      write(1, "*", 1);
+      tputs(tgoto(tgetstr("cm", NULL), x, 0), 0, my_putchr);
+      write(1, "*", 1);
+      x += 1;
+    }
+  my_str("\e[00m", 1);
 }
