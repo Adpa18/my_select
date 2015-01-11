@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:24:08 2015 adrien wery
-** Last update Sun Jan 11 17:45:42 2015 adrien wery
+** Last update Sun Jan 11 19:38:46 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -27,16 +27,40 @@ void			sigw2(int sig)
   exit(EXIT_SUCCESS);
 }
 
+int                     set_terms(char **env)
+{
+  struct termios        terms;
+  char                  *term;
+
+  if (tcgetattr(0, &terms) == -1)
+    my_error("Error : tcgetattr return -1");
+  terms.c_lflag &=  ~ICANON;
+  terms.c_lflag &=  ~ECHO;
+  terms.c_cc[VMIN] = 1;
+  terms.c_cc[VTIME] = 1;
+  terms.c_iflag &= IGNBRK;
+  if (tcsetattr(0, TCSANOW, &terms) == -1)
+    my_error("Error : tcsetattr return -1");
+  term = get_env("TERM=", env);
+  if (term == NULL || tgetent(NULL, term) != 1)
+    {
+      unset_terms(lis);
+      my_error("Get Env Error !!!");
+    }
+  tputs(tgetstr("vi", NULL), 0, my_putchr);
+  return (0);
+}
+
 int			get_key(t_l *list, int key, int pos)
 {
   struct winsize	w;
   t_sel			se;
 
-  if (key >= 33 && key < 126)
-    s[my_str(s, 0)] = key;
-  else if (key == DEL_KEY && my_str(s, 0) > 0 && my_str(s, 0) < 10)
+  if (key >= 33 && key < 126 &&  my_strlen(s) < 100)
+    s[my_strlen(s)] = key;
+  else if (key == DEL_KEY && my_strlen(s) > 0)
     {
-      s[my_str(s, 0) - 1] = '\0';
+      s[my_strlen(s) - 1] = '\0';
       restore_list(list);
     }
   tputs(tgetstr("cl", NULL), 0, my_putchr);
@@ -48,9 +72,9 @@ int			get_key(t_l *list, int key, int pos)
   se.r = w.ws_row;
   se.c = w.ws_col;
   tputs(tgoto(tgetstr("cm", NULL), 0, w.ws_row), 0, my_putchr);
-  my_str("\e[01;36m", 1);
-  my_str(s, 1);
-  my_str("\e[00m", 1);
+  color_print("\e[01;36m");
+  my_str(s, 1, "\e[01;35m", "\e[01;36m");
+  color_print("\e[00;37m");
   display_numb(list, w.ws_row, w.ws_col);
   display_list(list, pos, se);
   return (pos);

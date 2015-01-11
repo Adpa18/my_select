@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:23:42 2015 adrien wery
-** Last update Sun Jan 11 13:52:10 2015 adrien wery
+** Last update Sun Jan 11 19:45:15 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -17,32 +17,11 @@ char                    *get_env(char *s, char **env)
   i = 0;
   if (env == NULL)
     return (NULL);
-  while (env[i] && my_strncmp(s, env[i], my_str(s, 0) - 1) != 0)
+  while (env[i] && my_strncmp(s, env[i], my_strlen(s) - 1) != 0)
     i += 1;
   if (env[i] == NULL)
     return (NULL);
-  return (&env[i][my_str(s, 0)]);
-}
-
-int                     set_terms(char **env)
-{
-  struct termios        terms;
-  char                  *term;
-
-  if (tcgetattr(0, &terms) == -1)
-    my_error("Error : tcgetattr return -1");
-  terms.c_lflag &=  ~ICANON;
-  terms.c_lflag &=  ~ECHO;
-  terms.c_cc[VMIN] = 1;
-  terms.c_cc[VTIME] = 1;
-  terms.c_iflag &= IGNBRK;
-  if (tcsetattr(0, TCSANOW, &terms) == -1)
-    my_error("Error : tcsetattr return -1");
-  term = get_env("TERM=", env);
-  if (term == NULL || tgetent(NULL, term) != 1)
-    my_error("get env error");
-  tputs(tgetstr("vi", NULL), 0, my_putchr);
-  return (0);
+  return (&env[i][my_strlen(s)]);
 }
 
 void                    unset_terms(t_l *list)
@@ -59,18 +38,4 @@ void                    unset_terms(t_l *list)
   tputs(tgetstr("vs", NULL), 0, my_putchr);
   tputs(tgetstr("cl", NULL), 0, my_putchr);
   free(list);
-}
-
-void                    underline(char *s)
-{
-  tputs(tgetstr("us", NULL), 0, my_putchr);
-  write(1, s, my_str(s, 0));
-  tputs(tgetstr("ue", NULL), 0, my_putchr);
-}
-
-void                    r_video(char *s)
-{
-  tputs(tgetstr("mr", NULL), 0, my_putchr);
-  write(1, s, my_str(s, 0));
-  tputs(tgetstr("me", NULL), 0, my_putchr);
 }

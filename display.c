@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:00:13 2015 adrien wery
-** Last update Sun Jan 11 17:38:22 2015 adrien wery
+** Last update Sun Jan 11 19:45:52 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -24,8 +24,8 @@ void     display_list(t_l *list, int pos, t_sel se)
   display_border(se.c, se.r);
   while (list[i].str && display_small(x + max_s, se) != 1 && quit(list) == 1)
     {
-      if (my_str(list[i].str, 0) > max_s)
-        max_s = my_str(list[i].str, 0);
+      if (my_strlen(list[i].str) > max_s)
+        max_s = my_strlen(list[i].str);
       if (y == se.r - 2)
         {
           x = display_col(x + max_s + 1, se.r);
@@ -41,18 +41,19 @@ void     display_list(t_l *list, int pos, t_sel se)
 
 int     display_list_2(t_l *list, int i, int pos, char *s)
 {
-  if (strncmp(s, list[i].str, my_str(s, 0)) != 0)
+  if (strncmp(s, list[i].str, my_strlen(s)) != 0)
     list[i].finded = 1;
   if (list[i].deleted != 1 && list[i].finded != 1)
     {
       if (list[i].selected == 1 && i == pos)
-        underline(list[i].str);
+	my_str(list[i].str, 1, "\e[04;35m", "\e[04;37m");
       else if (list[i].selected == 1)
-        r_video(list[i].str);
+	my_str(list[i].str, 1, "\e[07;37em", "\e[07;37m");
       else if (i == pos)
-        underline(list[i].str);
+	my_str(list[i].str, 1, "\e[04;35m", "\e[04;37m");
       else if (list[i].deleted == 0)
-        write(1, list[i].str, my_str(list[i].str, 0));
+	my_str(list[i].str, 1, "\e[01;35m", "\e[00;37m");
+      color_print("\e[00;37m");
       return (1);
     }
   else
@@ -94,20 +95,21 @@ void	display_numb(t_l *list, int row, int col)
       i += 1;
     }
   tputs(tgoto(tgetstr("cm", NULL), col - 10, row), 0, my_putchr);
-  my_str("\e[01;31m", 1);
+  color_print("\e[01;31m");
   my_put_nbr(selected);
-  my_str(" / ", 1);
+  my_str(" / ", 1, "\e[01;35m", "\e[00;37m");
+  color_print("\e[01;31m");
   my_put_nbr(total);
-  my_str("\e[00m", 1);
+  color_print("\e[00m");
 }
 
 void	display_border(int col, int row)
 {
   int	x;
 
-  x = 0;
-  my_str("\e[01;33m", 1);
-  while (x < row - 1)
+  x = 1;
+  color_print("\e[01;33m");
+  while (x < row - 2)
     {
       tputs(tgoto(tgetstr("cm", NULL), col - 2, x), 0, my_putchr);
       write(1, "||", 2);
@@ -116,7 +118,7 @@ void	display_border(int col, int row)
       x += 1;
     }
   x = 0;
-  my_str("\e[01;34m", 1);
+  color_print("\e[01;34m");
   while (x < col)
     {
       tputs(tgoto(tgetstr("cm", NULL), x, row - 2), 0, my_putchr);
@@ -125,5 +127,5 @@ void	display_border(int col, int row)
       write(1, "*", 1);
       x += 1;
     }
-  my_str("\e[00m", 1);
+  color_print("\e[00;37m");
 }

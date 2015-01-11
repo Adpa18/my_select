@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:26:44 2015 adrien wery
-** Last update Sun Jan 11 15:33:18 2015 adrien wery
+** Last update Sun Jan 11 19:13:42 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -50,4 +50,16 @@ void     my_put_nbr(int nb)
     }
   else
     cal(nb, nb);
+}
+
+void     color_print(char *s)
+{
+  int   i;
+
+  i = 0;
+  while (s[i])
+    {
+      my_putchar(s[i]);
+      i += 1;
+    }
 }

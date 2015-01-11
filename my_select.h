@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Tue Jan  6 21:12:47 2015 adrien wery
-** Last update Sun Jan 11 17:35:19 2015 adrien wery
+** Last update Sun Jan 11 19:26:20 2015 adrien wery
 */
 
 #ifndef MY_SELECT_H_
@@ -55,8 +55,10 @@ void            my_error(char *s);
 char		*my_memset(char *s, char c, int size);
 void		*my_malloc(int size);
 int		my_strncmp(char *s1, char *s2, int nb);
-int		my_str(char *s, int mode);
+int		my_str(char *s, int mode, char *m_s, char *m_e);
+int		my_strlen(char *s);
 void		my_put_nbr(int nb);
+void		color_print(char *s);
 int             main(int argc, char **argv, char **envp);
 void		sigw(int sig);
 void		sigw2(int sig);

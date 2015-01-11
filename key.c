@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Thu Jan  8 15:07:09 2015 adrien wery
-** Last update Sun Jan 11 17:43:08 2015 adrien wery
+** Last update Sun Jan 11 19:35:07 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -19,7 +19,7 @@ int	check_key(t_l *list, int key, int pos)
   if (key == SPACE_KEY && list[pos].selected != 1)
     list[pos++].selected = 1;
   else if (key == SPACE_KEY && list[pos].selected != 0)
-    list[pos].selected = 0;
+    list[pos++].selected = 0;
   if (key == SUPP_KEY)
     list[pos++].deleted = 1;
   if (key == RIGHT_KEY)
@@ -73,13 +73,13 @@ int    display_col(int x, int row)
   int   y;
 
   y = 1;
-  my_str("\e[01;33m", 1);
+  color_print("\e[01;33m");
   while (y < row - 2)
     {
       tputs(tgoto(tgetstr("cm", NULL), x, y), 0, my_putchr);
       write(1, "||", 2);
       y += 1;
     }
-  my_str("\e[00m", 1);
+  color_print("\e[00;37m");
   return (x + 3);
 }
