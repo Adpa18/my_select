@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Tue Jan  6 21:12:47 2015 adrien wery
-** Last update Sun Jan 11 21:10:28 2015 adrien wery
+** Last update Sun Jan 11 22:46:46 2015 adrien wery
 */
 
 #ifndef MY_SELECT_H_
@@ -58,6 +58,7 @@ int		my_strncmp(char *s1, char *s2, int nb);
 int		my_str(char *s, int mode, char *m_s, char *m_e);
 int		my_strlen(char *s);
 void		my_put_nbr(int nb);
+int		match(char *s1, char *s2);
 void		color_print(char *s);
 int             main(int argc, char **argv, char **envp);
 void		sigw(int sig);

@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:00:13 2015 adrien wery
-** Last update Sun Jan 11 22:41:17 2015 adrien wery
+** Last update Sun Jan 11 22:46:45 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -37,31 +37,6 @@ void     display_list(t_l *list, int pos, t_sel se)
         y += display_list_2(list, i, pos, se.s);
       i += 1;
     }
-}
-
-int     match(char *s1, char *s2)
-{
-  int   i;
-  int   n;
-
-  i = 0;
-  if (s1 == NULL || s2 == NULL)
-    return (-1);
-  while (s2[i])
-    {
-      n = 0;
-      if (s1[n] != s2[i])
-        i += 1;
-      else
-        while (s1[n] == s2[i])
-          {
-            n += 1;
-            i += 1;
-          }
-      if (s1[n] == '\0')
-        return (0);
-    }
-  return (2);
 }
 
 int     display_list_2(t_l *list, int i, int pos, char *s)

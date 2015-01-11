@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Sun Jan 11 13:55:11 2015 adrien wery
-** Last update Sun Jan 11 22:41:49 2015 adrien wery
+** Last update Sun Jan 11 22:46:01 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -59,4 +59,29 @@ int     my_strlen(char *s)
   while (s[i])
     i += 1;
   return (i);
+}
+
+int     match(char *s1, char *s2)
+{
+  int   i;
+  int   n;
+
+  i = 0;
+  if (s1 == NULL || s2 == NULL)
+    return (-1);
+  while (s2[i])
+    {
+      n = 0;
+      if (s1[n] != s2[i])
+        i += 1;
+      else
+        while (s1[n] == s2[i])
+          {
+            n += 1;
+            i += 1;
+          }
+      if (s1[n] == '\0')
+        return (0);
+    }
+  return (2);
 }
