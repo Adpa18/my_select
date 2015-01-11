@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:24:08 2015 adrien wery
-** Last update Sun Jan 11 22:42:13 2015 adrien wery
+** Last update Sun Jan 11 23:04:07 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -72,7 +72,7 @@ int			get_key(t_l *list, int key, int pos)
   se.r = w.ws_row;
   se.c = w.ws_col;
   tputs(tgoto(tgetstr("cm", NULL), 0, w.ws_row), 0, my_putchr);
-  color_print("\e[01;36m");
+  my_str("Search : ", 1, "\e[01;35m", "\e[01;32m");
   my_str(s, 1, "\e[01;35m", "\e[01;36m");
   color_print("\e[00;37m");
   display_numb(list, w.ws_row, w.ws_col);

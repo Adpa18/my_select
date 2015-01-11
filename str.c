@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Sun Jan  4 16:46:10 2015 adrien wery
-** Last update Sun Jan 11 22:42:37 2015 adrien wery
+** Last update Sun Jan 11 23:04:38 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -30,10 +30,10 @@ int	my_str(char *s, int mode, char *m_s, char *m_e)
     {
       if (mode == 1)
 	{
+	  color_print(m_e);
 	  if (s[i] == '/')
 	    color_print(m_s);
 	  my_putchar(s[i]);
-	  color_print(m_e);
 	}
       i += 1;
     }

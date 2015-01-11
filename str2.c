@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:26:44 2015 adrien wery
-** Last update Sun Jan 11 22:42:29 2015 adrien wery
+** Last update Sun Jan 11 22:56:36 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -14,16 +14,6 @@ void     my_error(char *s)
 {
   my_str(s, 1, NULL, NULL);
   exit(EXIT_FAILURE);
-}
-
-void    *my_malloc(int size)
-{
-  char  *str;
-
-  if ((str = malloc(size)) == NULL)
-    my_error("Malloc Failed");
-  my_memset(str, 0, size);
-  return (str);
 }
 
 int     cal(int nb, int n)
