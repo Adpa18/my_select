@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:23:42 2015 adrien wery
-** Last update Fri Jan  9 21:02:31 2015 adrien wery
+** Last update Sun Jan 11 13:52:10 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -45,7 +45,7 @@ int                     set_terms(char **env)
   return (0);
 }
 
-void                    unset_terms()
+void                    unset_terms(t_l *list)
 {
   struct termios        terms;
 
@@ -58,6 +58,7 @@ void                    unset_terms()
     my_error("Error : tcsetattr return -1");
   tputs(tgetstr("vs", NULL), 0, my_putchr);
   tputs(tgetstr("cl", NULL), 0, my_putchr);
+  free(list);
 }
 
 void                    underline(char *s)

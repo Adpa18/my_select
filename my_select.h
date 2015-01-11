@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Tue Jan  6 21:12:47 2015 adrien wery
-** Last update Sun Jan 11 13:30:16 2015 adrien wery
+** Last update Sun Jan 11 15:01:06 2015 adrien wery
 */
 
 #ifndef MY_SELECT_H_
@@ -22,15 +22,15 @@
 #include <sys/ioctl.h>
 #include <signal.h>
 
-# define UP_KEY 165
-# define DOWN_KEY 166
-# define RIGHT_KEY 167
-# define LEFT_KEY 168
+# define UP_KEY 183
+# define DOWN_KEY 184
+# define RIGHT_KEY 185
+# define LEFT_KEY 186
 # define SPACE_KEY 32
 # define DEL_KEY 127
-# define SUPP_KEY 126
-# define BEGIN_KEY 172
-# define END_KEY 170
+# define SUPP_KEY 295
+# define BEGIN_KEY 190
+# define END_KEY 188
 # define ESCAPE_KEY 27
 # define ENTREY 13
 
@@ -61,11 +61,11 @@ void		sigw(int sig);
 void		sigw2(int sig);
 char		*get_env(char *s, char **env);
 int		set_terms(char **env);
-void		unset_terms();
+void		unset_terms(t_l *list);
 void		underline(char *s);
 void		r_video(char *s);
 int		get_key(t_l *list, int key, int pos);
-int		read_key();
+int		read_key(t_l *list);
 int		get_pos(t_l *list, int pos);
 int		check_key(t_l *list, int key, int pos);
 int		move_pos(t_l *list, int pos, int step, int neg);

@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Thu Jan  8 15:07:09 2015 adrien wery
-** Last update Sun Jan 11 13:22:15 2015 adrien wery
+** Last update Sun Jan 11 15:02:39 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -41,21 +41,17 @@ int	move_pos(t_l *list, int pos, int step, int neg)
   return (pos);
 }
 
-int     read_key()
+int     read_key(t_l *list)
 {
   char  buff[5];
 
-  my_memset(buff, 0, 5);
-  if (read(0, buff, 3) == -1)
+  my_memset(buff, 0, 4);
+  if (read(0, buff, 5) == -1)
     {
-      unset_terms();
+      unset_terms(list);
       my_error("Read Failed");
     }
-  if (buff[0] == 27 && buff[1] == 91)
-    return (100 + buff[2]);
-  else
-    return (*buff);
-
+  return (buff[0] + buff[1] + buff[2] + buff[3]);
 }
 
 int	get_pos(t_l *list, int pos)
@@ -70,12 +66,4 @@ int	get_pos(t_l *list, int pos)
   else
     pos = pos % i;
   return (pos);
-}
-
-void    sigw2(int sig)
-{
-  my_putchr(sig);
-  tputs(tgetstr("cl", NULL), 0, my_putchr);
-  unset_terms();
-  exit(EXIT_SUCCESS);
 }

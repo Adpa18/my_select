@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:24:08 2015 adrien wery
-** Last update Sun Jan 11 13:30:53 2015 adrien wery
+** Last update Sun Jan 11 15:03:20 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -13,10 +13,18 @@
 t_l	*lis;
 char	s[256];
 
-void	sigw(int sig)
+void			sigw(int sig)
 {
   my_putchr(sig);
   get_key(lis, 0, 0);
+}
+
+void			sigw2(int sig)
+{
+  my_putchr(sig);
+  tputs(tgetstr("cl", NULL), 0, my_putchr);
+  unset_terms(lis);
+  exit(EXIT_SUCCESS);
 }
 
 int			get_key(t_l *list, int key, int pos)
@@ -26,7 +34,7 @@ int			get_key(t_l *list, int key, int pos)
 
   if (key >= 33 && key < 126)
     s[my_str(s, 0)] = key;
-  else if (key == DEL_KEY && my_str(s, 0) > 0 && my_str(s, 0) < 256)
+  else if (key == DEL_KEY && my_str(s, 0) > 0 && my_str(s, 0) < 10)
     {
       s[my_str(s, 0) - 1] = '\0';
       restore_list(list);
@@ -48,51 +56,10 @@ int			get_key(t_l *list, int key, int pos)
   return (pos);
 }
 
-int	quit(t_l *list)
+int			main(int argc, char **argv, char **envp)
 {
-  int	a;
-  int	i;
-
-  a = 0;
-  i = 0;
-  while (list[i].str)
-    {
-      if (list[i].deleted == 0)
-	a +=1;
-      i += 1;
-    }
-  if (a == 0)
-    {
-      unset_terms();
-      exit(EXIT_SUCCESS);
-    }
-  return (1);
-}
-
-void	entrey(t_l *list)
-{
-  int	i;
-
-  i = 0;
-  tputs(tgetstr("cl", NULL), 0, my_putchr);
-  unset_terms();
-  while (list[i].str)
-    {
-      if (list[i].selected == 1 && list[i].deleted == 0)
-	{
-	  write(0, list[i].str, my_str(list[i].str, 0));
-	  write(0, " ", 1);
-	}
-      i += 1;
-    }
-  write(0, "\n", 1);
-  exit(EXIT_SUCCESS);
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-  int	key;
-  int	pos;
+  int			key;
+  int			pos;
 
   if (argc == 1)
     my_error("Need arguments !!!");
@@ -106,9 +73,9 @@ int	main(int argc, char **argv, char **envp)
   while (key != ESCAPE_KEY)
     {
       pos = get_key(lis, key, pos);
-      key = read_key();
+      key = read_key(lis);
     }
   tputs(tgetstr("cl", NULL), 0, my_putchr);
-  unset_terms();
+  unset_terms(lis);
   return (0);
 }

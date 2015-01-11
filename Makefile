@@ -5,7 +5,7 @@
 ## Login   <wery_a@epitech.net>
 ## 
 ## Started on  Fri Jan  2 20:37:11 2015 adrien wery
-## Last update Sat Jan 10 14:14:13 2015 adrien wery
+## Last update Sun Jan 11 13:56:01 2015 adrien wery
 ##
 
 SRC	= main.c \
@@ -14,7 +14,8 @@ SRC	= main.c \
 	  str2.c \
 	  key.c \
 	  display.c \
-	  list.c
+	  list.c \
+	  list2.c
 
 CC	= gcc -g
 
