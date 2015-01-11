@@ -5,15 +5,14 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:26:44 2015 adrien wery
-** Last update Sun Jan 11 19:13:42 2015 adrien wery
+** Last update Sun Jan 11 20:09:19 2015 adrien wery
 */
 
 #include "my_select.h"
 
 void     my_error(char *s)
 {
-  if (printf("%s\n", s) < 0)
-    printf("Error with printf during an error return !!!\n");
+  my_str(s, 1, NULL, NULL);
   exit(EXIT_FAILURE);
 }
 

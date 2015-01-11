@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:00:13 2015 adrien wery
-** Last update Sun Jan 11 19:45:52 2015 adrien wery
+** Last update Sun Jan 11 20:06:19 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -41,6 +41,7 @@ void     display_list(t_l *list, int pos, t_sel se)
 
 int     display_list_2(t_l *list, int i, int pos, char *s)
 {
+  color_print("\e[00;37m");
   if (strncmp(s, list[i].str, my_strlen(s)) != 0)
     list[i].finded = 1;
   if (list[i].deleted != 1 && list[i].finded != 1)
@@ -48,7 +49,7 @@ int     display_list_2(t_l *list, int i, int pos, char *s)
       if (list[i].selected == 1 && i == pos)
 	my_str(list[i].str, 1, "\e[04;35m", "\e[04;37m");
       else if (list[i].selected == 1)
-	my_str(list[i].str, 1, "\e[07;37em", "\e[07;37m");
+	my_str(list[i].str, 1, "\e[07;37m", "\e[07;37m");
       else if (i == pos)
 	my_str(list[i].str, 1, "\e[04;35m", "\e[04;37m");
       else if (list[i].deleted == 0)
