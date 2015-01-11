@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Tue Jan  6 21:12:47 2015 adrien wery
-** Last update Sat Jan 10 13:58:06 2015 adrien wery
+** Last update Sun Jan 11 13:30:16 2015 adrien wery
 */
 
 #ifndef MY_SELECT_H_
@@ -29,6 +29,8 @@
 # define SPACE_KEY 32
 # define DEL_KEY 127
 # define SUPP_KEY 126
+# define BEGIN_KEY 172
+# define END_KEY 170
 # define ESCAPE_KEY 27
 # define ENTREY 13
 
@@ -55,24 +57,27 @@ void		*my_malloc(int size);
 int		my_strncmp(char *s1, char *s2, int nb);
 int		my_str(char *s, int mode);
 int             main(int argc, char **argv, char **envp);
+void		sigw(int sig);
+void		sigw2(int sig);
 char		*get_env(char *s, char **env);
 int		set_terms(char **env);
 void		unset_terms();
 void		underline(char *s);
 void		r_video(char *s);
-int		read_key();
 int		get_key(t_l *list, int key, int pos);
-void		sigw(int sig);
-void		sigw2(int sig);
+int		read_key();
 int		get_pos(t_l *list, int pos);
-int		move_pos(t_l *list, int pos, int step, int neg);
-void		restore_list(t_l *list);
 int		check_key(t_l *list, int key, int pos);
+int		move_pos(t_l *list, int pos, int step, int neg);
 t_l		*set_list(char **s);
-int		display_list(t_l *list, int pos, t_sel se);
+void		display_list(t_l *list, int pos, t_sel se);
 int		display_list_2(t_l *list, int i, int pos, char *s);
 int		display_small(int x, int ws_col);
-int		entrey(t_l *list);
 int		quit(t_l *list);
+void		entrey(t_l *list);
+void		restore_list(t_l *list);
+void		inverse_selected(t_l *list);
+void		selected_all(t_l *list);
+void		deselected_all(t_l *list);
 
 #endif /* !MY_SELECT_H_ */

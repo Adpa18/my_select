@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:24:08 2015 adrien wery
-** Last update Sat Jan 10 14:46:24 2015 adrien wery
+** Last update Sun Jan 11 13:30:53 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -69,7 +69,7 @@ int	quit(t_l *list)
   return (1);
 }
 
-int	entrey(t_l *list)
+void	entrey(t_l *list)
 {
   int	i;
 
@@ -78,7 +78,7 @@ int	entrey(t_l *list)
   unset_terms();
   while (list[i].str)
     {
-      if (list[i].selected == 1)
+      if (list[i].selected == 1 && list[i].deleted == 0)
 	{
 	  write(0, list[i].str, my_str(list[i].str, 0));
 	  write(0, " ", 1);

@@ -5,12 +5,12 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:00:13 2015 adrien wery
-** Last update Sat Jan 10 14:50:55 2015 adrien wery
+** Last update Sun Jan 11 13:25:10 2015 adrien wery
 */
 
 #include "my_select.h"
 
-int     display_list(t_l *list, int pos, t_sel se)
+void     display_list(t_l *list, int pos, t_sel se)
 {
   int   i;
   int   x;
@@ -36,7 +36,6 @@ int     display_list(t_l *list, int pos, t_sel se)
         y += display_list_2(list, i, pos, se.s);
       i += 1;
     }
-  return (0);
 }
 
 int     display_list_2(t_l *list, int i, int pos, char *s)

@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Thu Jan  8 15:07:09 2015 adrien wery
-** Last update Sat Jan 10 14:51:43 2015 adrien wery
+** Last update Sun Jan 11 13:22:15 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -24,6 +24,12 @@ int	check_key(t_l *list, int key, int pos)
     list[pos++].deleted = 1;
   if (key == RIGHT_KEY)
     restore_list(list);
+  if (key == LEFT_KEY)
+    inverse_selected(list);
+  if (key == BEGIN_KEY)
+    selected_all(list);
+  if (key == END_KEY)
+    deselected_all(list);
   return (pos);
 }
 
@@ -64,4 +70,12 @@ int	get_pos(t_l *list, int pos)
   else
     pos = pos % i;
   return (pos);
+}
+
+void    sigw2(int sig)
+{
+  my_putchr(sig);
+  tputs(tgetstr("cl", NULL), 0, my_putchr);
+  unset_terms();
+  exit(EXIT_SUCCESS);
 }
