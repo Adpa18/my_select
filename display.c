@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:00:13 2015 adrien wery
-** Last update Sun Jan 11 15:30:56 2015 adrien wery
+** Last update Sun Jan 11 16:10:36 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -73,7 +73,7 @@ int	display_small(int x, int ws_col)
     return (0);
 }
 
-void                    display_numb(t_l *list)
+void                    display_numb(t_l *list, int row, int col)
 {
   int                   i;
   int                   selected;
@@ -92,7 +92,7 @@ void                    display_numb(t_l *list)
         }
       i += 1;
     }
-  tputs(tgoto(tgetstr("cm", NULL), 100, 100), 0, my_putchr);
+  tputs(tgoto(tgetstr("cm", NULL), col - 9, row), 0, my_putchr);
   my_put_nbr(selected);
   my_str(" / ", 1);
   my_put_nbr(total);

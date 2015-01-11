@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:24:08 2015 adrien wery
-** Last update Sun Jan 11 15:31:55 2015 adrien wery
+** Last update Sun Jan 11 16:09:00 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -15,13 +15,13 @@ char	s[256];
 
 void			sigw(int sig)
 {
-  my_putchr(sig);
+  (void)sig;
   get_key(lis, 0, 0);
 }
 
 void			sigw2(int sig)
 {
-  my_putchr(sig);
+  (void)sig;
   tputs(tgetstr("cl", NULL), 0, my_putchr);
   unset_terms(lis);
   exit(EXIT_SUCCESS);
@@ -40,7 +40,7 @@ int			get_key(t_l *list, int key, int pos)
       restore_list(list);
     }
   tputs(tgetstr("cl", NULL), 0, my_putchr);
-  tputs(tgoto(tgetstr("cm", NULL), 0, 100), 0, my_putchr);
+  tputs(tgoto(tgetstr("cm", NULL), 0, w.ws_row), 0, my_putchr);
   my_str("\e[01;36m", 1);
   my_str(s, 1);
   my_str("\e[00m", 1);
@@ -52,7 +52,7 @@ int			get_key(t_l *list, int key, int pos)
   se.r = w.ws_row;
   se.c = w.ws_col;
   display_list(list, pos, se);
-  display_numb(list);
+  display_numb(list, w.ws_row, w.ws_col);
   return (pos);
 }
 
