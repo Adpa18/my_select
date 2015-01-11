@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Wed Jan  7 14:24:08 2015 adrien wery
-** Last update Sun Jan 11 17:04:37 2015 adrien wery
+** Last update Sun Jan 11 17:45:42 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -64,7 +64,7 @@ int			main(int argc, char **argv, char **envp)
   if (argc == 1)
     my_error("Need arguments !!!");
   set_terms(envp);
-  lis = set_list(&argv[1]);
+  lis = set_list(argc, argv);
   signal(SIGWINCH, sigw);
   signal(SIGINT, sigw2);
   key = 0;

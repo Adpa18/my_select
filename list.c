@@ -5,33 +5,33 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:04:00 2015 adrien wery
-** Last update Sun Jan 11 13:22:31 2015 adrien wery
+** Last update Sun Jan 11 17:35:47 2015 adrien wery
 */
 
 #include "my_select.h"
 
-t_l     *set_list(char **s)
+t_l     *set_list(int ac, char **av)
 {
   t_l   *list;
   int   i;
-  int   size;
 
   i = 0;
-  while (s[i])
-    i += 1;
-  if ((list = malloc(sizeof(t_l) * (i + 1))) == NULL)
+  if ((list = malloc(sizeof(t_l) * (ac + 1))) == NULL)
     my_error("Malloc Failed !!!");
-  size = i;
-  i = 0;
-  while (i != size)
+  while (i < ac - 1)
     {
-      list[i].str = s[i];
+      list[i].str = av[i + 1];
+      i += 1;
+    }
+  list[i].str = NULL;
+  i = 0;
+  while (list[i].str)
+    {
       list[i].selected = 0;
       list[i].deleted = 0;
       list[i].finded = 0;
       i += 1;
     }
-  list[i].str = NULL;
   return (list);
 }
 

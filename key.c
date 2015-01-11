@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Thu Jan  8 15:07:09 2015 adrien wery
-** Last update Sun Jan 11 17:19:40 2015 adrien wery
+** Last update Sun Jan 11 17:43:08 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -43,10 +43,10 @@ int	move_pos(t_l *list, int pos, int step, int neg)
 
 int     read_key(t_l *list)
 {
-  char  buff[5];
+  char  buff[4];
 
   my_memset(buff, 0, 4);
-  if (read(0, buff, 5) == -1)
+  if (read(0, buff, 4) == -1)
     {
       unset_terms(list);
       my_error("Read Failed");

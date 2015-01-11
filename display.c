@@ -5,7 +5,7 @@
 ** Login   <wery_a@epitech.net>
 ** 
 ** Started on  Fri Jan  9 14:00:13 2015 adrien wery
-** Last update Sun Jan 11 17:21:26 2015 adrien wery
+** Last update Sun Jan 11 17:38:22 2015 adrien wery
 */
 
 #include "my_select.h"
@@ -61,7 +61,7 @@ int     display_list_2(t_l *list, int i, int pos, char *s)
 
 int	display_small(int x, t_sel se)
 {
-  if (x > se.c || se.c < 10 || se.r < 5)
+  if ((x > se.c || se.c < 10 || se.r < 5) && se.c < 200)
     {
       tputs(tgetstr("cl", NULL), 0, my_putchr);
       if (se.c < 21)
